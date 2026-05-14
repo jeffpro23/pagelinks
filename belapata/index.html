@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bela Pata - Pet Móvel | Banho e Tosa em Domicílio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Meta Tags para Preview de Link (Open Graph) -->
+    <meta property="og:title" content="Bela Pata - Pet Móvel | Banho e Tosa em Domicílio">
+    <meta property="og:description"
+        content="Estética animal móvel com carinho e praticidade. Atendemos na porta da sua casa! 🐾🏠">
+    <meta property="og:image" content="https://jeffpro23.github.io/pagelinks/belapata/assets/logo.webp">
+    <meta property="og:url" content="https://jeffpro23.github.io/pagelinks/belapata/">
+    <meta property="og:type" content="website">
+
+    <!-- Meta Tags para Twitter/X e WhatsApp -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bela Pata - Pet Móvel">
+    <meta name="twitter:description" content="Banho e Tosa em domicílio com todo carinho.">
+    <meta name="twitter:image" content="https://jeffpro23.github.io/pagelinks/belapata/assets/logo.webp">
+
+    <style>
+        :root {
+            --bg-color: #0d2e2e;
+            /* Verde escuro do fundo */
+            --card-bg: rgba(20, 60, 60, 0.7);
+            --accent-teal: #00a8b5;
+            /* Verde Água do panfleto */
+            --accent-beige: #e6be8a;
+            /* Bege do panfleto */
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.1);
+
+            /* Gradient Colors - Flyer Theme (Teal/Cyan/Sand) */
+            --gradient-background-start: #064e4e;
+            --gradient-background-end: #022c2c;
+            --first-color: 0, 168, 181;
+            /* Teal */
+            --second-color: 230, 190, 138;
+            /* Beige */
+            --third-color: 0, 139, 139;
+            /* Dark Cyan */
+            --fourth-color: 20, 80, 80;
+            --fifth-color: 0, 100, 110;
+            --pointer-color: 230, 190, 138;
+            --size: 80%;
+            --blending-value: hard-light;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* --- Animated Background --- */
+        .bg-gradient-container {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+            background: linear-gradient(40deg, var(--gradient-background-start), var(--gradient-background-end));
+        }
+
+        .svg-filter {
+            display: none;
+        }
+
+        .gradients-container {
+            filter: url(#blurMe) blur(40px);
+            width: 100%;
+            height: 100%;
+        }
+
+        .g1,
+        .g2,
+        .g3,
+        .g4,
+        .g5,
+        .interactive {
+            position: absolute;
+            width: var(--size);
+            height: var(--size);
+            top: calc(50% - var(--size) / 2);
+            left: calc(50% - var(--size) / 2);
+            mix-blend-mode: var(--blending-value);
+        }
+
+        .g1 {
+            background: radial-gradient(circle at center, rgba(var(--first-color), 0.8) 0, rgba(var(--first-color), 0) 50%) no-repeat;
+            transform-origin: center center;
+            animation: moveVertical 30s ease infinite;
+        }
+
+        .g2 {
+            background: radial-gradient(circle at center, rgba(var(--second-color), 0.8) 0, rgba(var(--second-color), 0) 50%) no-repeat;
+            transform-origin: calc(50% - 400px);
+            animation: moveInCircle 20s reverse infinite;
+        }
+
+        .g3 {
+            background: radial-gradient(circle at center, rgba(var(--third-color), 0.8) 0, rgba(var(--third-color), 0) 50%) no-repeat;
+            transform-origin: calc(50% + 400px);
+            animation: moveInCircle 40s linear infinite;
+        }
+
+        .g4 {
+            background: radial-gradient(circle at center, rgba(var(--fourth-color), 0.8) 0, rgba(var(--fourth-color), 0) 50%) no-repeat;
+            transform-origin: calc(50% - 200px);
+            animation: moveHorizontal 40s ease infinite;
+            opacity: 0.7;
+        }
+
+        .g5 {
+            background: radial-gradient(circle at center, rgba(var(--fifth-color), 0.8) 0, rgba(var(--fifth-color), 0) 50%) no-repeat;
+            transform-origin: calc(50% - 800px) calc(50% + 800px);
+            animation: moveInCircle 20s ease infinite;
+        }
+
+        .interactive {
+            background: radial-gradient(circle at center, rgba(var(--pointer-color), 0.8) 0, rgba(var(--pointer-color), 0) 50%) no-repeat;
+            width: 100%;
+            height: 100%;
+            top: -50%;
+            left: -50%;
+            opacity: 0.7;
+        }
+
+        @keyframes moveHorizontal {
+            0% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+
+            50% {
+                transform: translateX(50%) translateY(10%);
+            }
+
+            100% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+        }
+
+        @keyframes moveInCircle {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(180deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes moveVertical {
+            0% {
+                transform: translateY(-50%);
+            }
+
+            50% {
+                transform: translateY(50%);
+            }
+
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+            position: relative;
+            z-index: 10;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Logotipo --- */
+        .logo-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 140px;
+            height: 140px;
+            background: #fff;
+            border-radius: 50%;
+            object-fit: cover;
+            padding: 5px;
+            border: 4px solid var(--accent-teal);
+            box-shadow: 0 0 25px rgba(0, 168, 181, 0.4);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .logo:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        /* --- Textos --- */
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--accent-beige);
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .descricao {
+            font-size: 0.95rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* --- Serviços Discretos --- */
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+            justify-content: center;
+            gap: 8px 24px;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+            color: var(--accent-beige);
+            padding: 0 10px;
+        }
+
+        .servico-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            opacity: 0.8;
+            text-align: left;
+        }
+
+        .servico-item::before {
+            content: '•';
+            color: var(--accent-teal);
+        }
+
+        /* --- Redes Sociais --- */
+        .redes-sociais {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .social-link svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        .social-link:hover {
+            background: var(--accent-teal);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 168, 181, 0.3);
+        }
+
+        /* --- Botões --- */
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .botao {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 60px;
+            padding: 12px 24px;
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 500;
+            border-radius: 18px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .botao:hover {
+            border-color: var(--accent-teal);
+            background: rgba(0, 168, 181, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .botao.principal {
+            background: var(--accent-teal);
+            border: none;
+            font-weight: 600;
+        }
+
+        .botao.principal:hover {
+            background: #008b8b;
+            box-shadow: 0 8px 25px rgba(0, 168, 181, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            opacity: 1.0;
+        }
+
+        footer a {
+            color: inherit;
+            /* Faz o link usar a mesma cor do texto do footer */
+            text-decoration: underline;
+            /* Mantém o sublinhado para indicar que é um link */
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .logo {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-gradient-container">
+        <svg class="svg-filter">
+            <defs>
+                <filter id="blurMe">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+                        result="goo" />
+                    <feBlend in="SourceGraphic" in2="goo" />
+                </filter>
+            </defs>
+        </svg>
+        <div class="gradients-container">
+            <div class="g1"></div>
+            <div class="g2"></div>
+            <div class="g3"></div>
+            <div class="g4"></div>
+            <div class="g5"></div>
+            <div class="interactive"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="logo-container">
+            <img src="assets/logo.webp" alt="Logo Bela Pata - Pet Móvel" class="logo">
+        </div>
+
+        <p class="tagline">Seu pet merece o melhor ✨</p>
+        <h1>Bela Pata - Pet Móvel</h1>
+        <p class="descricao">O melhor da estética animal vem até você.</p>
+
+        <div class="servicos-grid">
+            <div class="servico-item">Banho de ozônio</div>
+            <div class="servico-item">Tosas</div>
+            <div class="servico-item">Higiênica</div>
+            <div class="servico-item">Corte de unhas</div>
+            <div class="servico-item">Escovação bucal</div>
+            <div class="servico-item">Trimming</div>
+            <div class="servico-item">Remoção de sub pelos</div>
+            <div class="servico-item">Hidratação</div>
+        </div>
+
+        <div class="links">
+            <a href="https://wa.me/5519993401760?text=Olá,%20gostaria%20de%20agendar%20um%20horário%20para%20meu%20PET!" class="botao principal" target="_blank">
+                <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: white; margin-right: 8px;">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+                Agendar Banho e Tosa 🐾
+            </a>
+            <a href="https://www.instagram.com/belapata.oficial" class="botao" target="_blank">
+                <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: white; margin-right: 8px;">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path>
+                </svg>
+                Confira nosso trabalho
+            </a>
+        </div>
+
+        <footer>
+            &copy; 2026 Bela Pata - Pet Móvel. Todos os direitos reservados.
+            <br>
+            Desenvolvido por:
+            <a href="https://dub.sh/zgztFh3" target="_blank">Clarituz Agência</a>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const interBubble = document.querySelector('.interactive');
+            let curX = 0;
+            let curY = 0;
+            let tgX = 0;
+            let tgY = 0;
+
+            function move() {
+                curX += (tgX - curX) / 20;
+                curY += (tgY - curY) / 20;
+                interBubble.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
+                requestAnimationFrame(() => {
+                    move();
+                });
+            }
+
+            window.addEventListener('mousemove', (event) => {
+                tgX = event.clientX;
+                tgY = event.clientY;
+            });
+
+            move();
+        });
+    </script>
+
+</body>
+
+</html>
