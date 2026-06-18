@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Igreja do Nazareno | Comunidade do Bem</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Meta Tags para Preview de Link (Open Graph) -->
+    <meta property="og:title" content="Igreja do Nazareno | Comunidade do Bem">
+    <meta property="og:description"
+        content="Um lugar de recomeços, fé e comunhão em Sumaré/SP. Venha nos visitar! ⛪✨">
+    <meta property="og:type" content="website">
+
+    <!-- Meta Tags para Twitter/X e WhatsApp -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Igreja do Nazareno | Comunidade do Bem">
+    <meta name="twitter:description" content="Um lugar de recomeços, fé e comunhão em Sumaré/SP.">
+
+    <style>
+        :root {
+            --bg-color: #f3f4f6;
+            /* Fundo cinza claro neutro */
+            --card-bg: #ffffff;
+            /* Cartões brancos do app */
+            --accent-purple: #5c2596;
+            /* Roxo Nazareno do design system */
+            --accent-pink: #d1257a;
+            /* Rosa/Magenta dos banners */
+            --accent-orange: #ea580c;
+            /* Laranja */
+            --text-primary: #1f2937;
+            /* Texto escuro */
+            --text-secondary: #6b7280;
+            /* Subtexto cinza */
+            --glass-border: rgba(0, 0, 0, 0.04);
+
+            /* Gradient Colors para o fundo sutil animado */
+            --gradient-background-start: #f3f4f6;
+            --gradient-background-end: #eae8f0;
+            --first-color: 92, 37, 150;     /* Purple */
+            --second-color: 209, 37, 122;   /* Pink */
+            --third-color: 234, 88, 12;     /* Orange */
+            --fourth-color: 243, 244, 246;  /* Soft Grey */
+            --fifth-color: 224, 231, 255;   /* Indigo */
+            --pointer-color: 92, 37, 150;
+            --size: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 10px;
+            overflow-x: hidden;
+        }
+
+        /* --- Animated Background --- */
+        .bg-gradient-container {
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at 0% 100%, rgba(209, 37, 122, 0.08) 0%, rgba(209, 37, 122, 0) 60%),
+                        radial-gradient(circle at 100% 100%, rgba(35, 73, 207, 0.06) 0%, rgba(35, 73, 207, 0) 60%),
+                        linear-gradient(40deg, var(--gradient-background-start), var(--gradient-background-end));
+        }
+
+        .svg-filter {
+            display: none;
+        }
+
+        .gradients-container {
+            filter: url(#blurMe) blur(40px);
+            width: 100%;
+            height: 100%;
+        }
+
+        .g1,
+        .g2,
+        .g3,
+        .g4,
+        .g5,
+        .interactive {
+            position: absolute;
+            width: var(--size);
+            height: var(--size);
+            top: calc(50% - var(--size) / 2);
+            left: calc(50% - var(--size) / 2);
+            mix-blend-mode: normal;
+        }
+
+        .g1 {
+            background: radial-gradient(circle at center, rgba(var(--first-color), 0.08) 0, rgba(var(--first-color), 0) 50%) no-repeat;
+            transform-origin: center center;
+            animation: moveVertical 30s ease infinite;
+        }
+
+        .g2 {
+            background: radial-gradient(circle at center, rgba(var(--second-color), 0.08) 0, rgba(var(--second-color), 0) 50%) no-repeat;
+            transform-origin: calc(50% - 400px);
+            animation: moveInCircle 20s reverse infinite;
+        }
+
+        .g3 {
+            background: radial-gradient(circle at center, rgba(var(--third-color), 0.08) 0, rgba(var(--third-color), 0) 50%) no-repeat;
+            transform-origin: calc(50% + 400px);
+            animation: moveInCircle 40s linear infinite;
+        }
+
+        .g4 {
+            background: radial-gradient(circle at center, rgba(var(--fourth-color), 0.08) 0, rgba(var(--fourth-color), 0) 50%) no-repeat;
+            transform-origin: calc(50% - 200px);
+            animation: moveHorizontal 40s ease infinite;
+            opacity: 0.7;
+        }
+
+        .g5 {
+            background: radial-gradient(circle at center, rgba(var(--fifth-color), 0.08) 0, rgba(var(--fifth-color), 0) 50%) no-repeat;
+            transform-origin: calc(50% - 800px) calc(50% + 800px);
+            animation: moveInCircle 20s ease infinite;
+        }
+
+        .interactive {
+            background: radial-gradient(circle at center, rgba(var(--pointer-color), 0.08) 0, rgba(var(--pointer-color), 0) 50%) no-repeat;
+            width: 100%;
+            height: 100%;
+            top: -50%;
+            left: -50%;
+            opacity: 0.7;
+        }
+
+        @keyframes moveHorizontal {
+            0% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+
+            50% {
+                transform: translateX(50%) translateY(10%);
+            }
+
+            100% {
+                transform: translateX(-50%) translateY(-10%);
+            }
+        }
+
+        @keyframes moveInCircle {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            50% {
+                transform: rotate(180deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes moveVertical {
+            0% {
+                transform: translateY(-50%);
+            }
+
+            50% {
+                transform: translateY(50%);
+            }
+
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        /* --- Container Principal --- */
+        .container {
+            width: 100%;
+            max-width: 440px;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+            position: relative;
+            z-index: 10;
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 32px;
+            padding: 40px 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Logotipo --- */
+        .logo-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .logo-link {
+            display: inline-block;
+            text-decoration: none;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 3px solid #ffffff;
+            box-shadow: 0 10px 25px rgba(92, 37, 150, 0.12);
+            overflow: hidden;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .logo-link:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        .logo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: invert(1);
+        }
+
+        /* --- Textos --- */
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-primary);
+        }
+
+        .tagline {
+            font-size: 0.95rem;
+            color: var(--accent-purple);
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .descricao {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        /* --- Tags de Serviços --- */
+        .servicos-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 32px;
+            padding: 0 4px;
+        }
+
+        .servico-item {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 14px;
+            background: rgba(92, 37, 150, 0.05);
+            border: 1px solid rgba(92, 37, 150, 0.08);
+            border-radius: 100px;
+            font-size: 0.82rem;
+            color: var(--accent-purple);
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .servico-item:hover {
+            background: var(--accent-purple);
+            border-color: var(--accent-purple);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(92, 37, 150, 0.15);
+        }
+
+        /* --- Botões / Links --- */
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            padding: 14px 18px;
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02),
+                        0 1px 3px rgba(0, 0, 0, 0.01);
+        }
+
+        .link-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px rgba(92, 37, 150, 0.08);
+            border-color: rgba(92, 37, 150, 0.18);
+        }
+
+        .link-icon {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(92, 37, 150, 0.06);
+            color: var(--accent-purple);
+            border-radius: 12px;
+            margin-right: 14px;
+            flex-shrink: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .link-card:hover .link-icon {
+            background: var(--accent-purple);
+            color: #ffffff;
+        }
+
+        .link-content {
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .link-title {
+            display: block;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .link-description {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.3;
+        }
+
+        .link-chevron {
+            color: #9ca3af;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .link-card:hover .link-chevron {
+            color: var(--accent-purple);
+            transform: translateX(4px);
+        }
+
+        /* Destacado / Principal */
+        .link-card.principal {
+            background: linear-gradient(135deg, var(--accent-purple), #7c3aed);
+            border: none;
+            color: #ffffff;
+            box-shadow: 0 8px 20px rgba(92, 37, 150, 0.15);
+        }
+
+        .link-card.principal:hover {
+            box-shadow: 0 12px 25px rgba(92, 37, 150, 0.25);
+            transform: translateY(-4px);
+        }
+
+        .link-card.principal .link-icon {
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+        }
+
+        .link-card.principal:hover .link-icon {
+            background: #ffffff;
+            color: var(--accent-purple);
+        }
+
+        .link-card.principal .link-title {
+            color: #ffffff;
+        }
+
+        .link-card.principal .link-description {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .link-card.principal .link-chevron {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .link-card.principal:hover .link-chevron {
+            color: #ffffff;
+        }
+
+        .icon-svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Rodapé de Redes Sociais */
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 28px;
+            margin-bottom: 4px;
+        }
+
+        .social-icon-btn {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(92, 37, 150, 0.04);
+            color: var(--accent-purple);
+            border: 1px solid rgba(92, 37, 150, 0.08);
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+        }
+
+        .social-icon-btn:hover {
+            background: var(--accent-purple);
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(92, 37, 150, 0.15);
+        }
+
+        .social-icon-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 24px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        footer a {
+            color: inherit;
+            text-decoration: underline;
+        }
+
+        /* --- Modal Styles --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(8, 6, 23, 0.45);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 400px;
+            padding: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            text-align: left;
+            position: relative;
+            animation: modalSlideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes modalSlideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            right: 20px;
+            top: 18px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #9ca3af;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .modal-close:hover {
+            color: #1f2937;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #1f2937;
+        }
+
+        .modal-desc {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .donation-info-box {
+            background: #f9fafb;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .donation-label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--accent-purple);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .donation-value {
+            display: block;
+            font-size: 0.92rem;
+            color: #1f2937;
+            font-weight: 500;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .donation-value:last-child {
+            margin-bottom: 0;
+        }
+
+        .pix-copy-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            background: rgba(92, 37, 150, 0.04);
+            border: 1px dashed rgba(92, 37, 150, 0.2);
+            padding: 8px 12px;
+            border-radius: 10px;
+            margin-top: 4px;
+        }
+
+        .pix-key {
+            font-family: monospace;
+            font-size: 0.95rem;
+            user-select: all;
+            color: var(--accent-purple);
+            font-weight: 600;
+        }
+
+        .copy-btn {
+            background: var(--accent-purple);
+            color: #ffffff;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .copy-btn:hover {
+            background: #4a197b;
+            transform: translateY(-1px);
+        }
+
+        .copy-btn.copied {
+            background: #10b981;
+        }
+
+        /* Ajustes Mobile */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 16px;
+                border-radius: 24px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .logo {
+                width: 96px;
+                height: 96px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-gradient-container">
+        <svg class="svg-filter">
+            <defs>
+                <filter id="blurMe">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
+                        result="goo" />
+                    <feBlend in="SourceGraphic" in2="goo" />
+                </filter>
+            </defs>
+        </svg>
+        <div class="gradients-container">
+            <div class="g1"></div>
+            <div class="g2"></div>
+            <div class="g3"></div>
+            <div class="g4"></div>
+            <div class="g5"></div>
+            <div class="interactive"></div>
+        </div>
+    </div>
+
+       <div class="container">
+        <div class="logo-container">
+            <!-- Logo Real Igreja do Nazareno -->
+            <a href="https://www.nazarenocomunidadedobem.com.br/" target="_blank" aria-label="Visite nosso site oficial" class="logo-link">
+                <img src="logo.png" alt="Logo Igreja do Nazareno" class="logo">
+            </a>
+        </div>
+
+        <p class="tagline">Comunidade do Bem ✨</p>
+        <h1>Igreja do Nazareno</h1>
+        <p class="descricao">Um lugar de recomeços, fé e comunhão em Sumaré/SP.</p>
+
+        <div class="servicos-grid">
+            <a href="https://www.nazarenocomunidadedobem.com.br/" class="servico-item" target="_blank">Cultos Semanais</a>
+            <a href="https://wa.me/5519992771077?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20Pequenos%20Grupos%20(Células)." class="servico-item" target="_blank">Pequenos Grupos</a>
+            <a href="https://wa.me/5519992771077?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20as%20Ações%20Sociais%20da%20igreja." class="servico-item" target="_blank">Ação Social</a>
+            <a href="https://wa.me/5519992771077?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Ministério%20Infantil." class="servico-item" target="_blank">Ministério Infantil</a>
+            <a href="https://www.nazarenocomunidadedobem.com.br/oracao" class="servico-item" target="_blank">Pedido de Oração</a>
+            <a href="https://wa.me/5519992771077?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Ministério%20de%20Louvor." class="servico-item" target="_blank">Ministério de Louvor</a>
+        </div>
+
+        <div class="links">
+            <!-- WhatsApp (Contato Principal) -->
+            <a href="https://wa.me/5519992771077?text=Olá!%20Gostaria%20de%20obter%20mais%20informações%20sobre%20a%20Igreja%20do%20Nazareno%20Comunidade%20do%20Bem." class="link-card principal" target="_blank">
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24" class="icon-svg">
+                        <path d="M12.012 2c-5.506 0-9.988 4.482-9.988 9.988 0 1.76.459 3.48 1.332 5.006L2 22l5.166-1.356c1.47.8 3.114 1.224 4.836 1.224 5.508 0 9.99-4.482 9.99-9.988C22 6.482 17.52 2 12.012 2zm5.422 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347" />
+                    </svg>
+                </div>
+                <div class="link-content">
+                    <span class="link-title">Fale Conosco</span>
+                    <span class="link-description">Tire suas dúvidas ou envie mensagem na secretaria</span>
+                </div>
+                <div class="link-chevron">
+                    <svg viewBox="0 0 24 24" class="icon-svg">
+                        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Sou Novo Aqui (Visitante) -->
+            <a href="https://www.nazarenocomunidadedobem.com.br/visitante" class="link-card" target="_blank">
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24" class="icon-svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+                    </svg>
+                </div>
+                <div class="link-content">
+                    <span class="link-title">Sou Novo Aqui</span>
+                    <span class="link-description">Queremos te conhecer! Preencha nossa ficha de conexão</span>
+                </div>
+                <div class="link-chevron">
+                    <svg viewBox="0 0 24 24" class="icon-svg">
+                        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Pedido de Oração -->
+            <a href="https://www.nazarenocomunidadedobem.com.br/oracao" class="link-card" target="_blank">
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24" class="icon-svg">
+                        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 12H7v-2h10v2zm0-3H7V9h10v2zm0-3H7V6h10v2z"/>
+                    </svg>
+                </div>
+                <div class="link-content">
+                    <span class="link-title">Pedido de Oração</span>
+                    <span class="link-description">Deixe seu pedido para intercedermos por você</span>
+                </div>
+                <div class="link-chevron">
+                    <svg viewBox="0 0 24 24" class="icon-svg">
+                        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Decisão de Fé -->
+            <a href="https://www.nazarenocomunidadedobem.com.br/decisao" class="link-card" target="_blank">
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24" class="icon-svg">
+                        <path d="M19 10.5h-5.5V5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v5.5H5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5h5.5V19c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-5.5H19c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5z"/>
+                    </svg>
+                </div>
+                <div class="link-content">
+                    <span class="link-title">Decisão de Fé</span>
+                    <span class="link-description">Aceitar a Jesus ou se reconciliar com Ele</span>
+                </div>
+                <div class="link-chevron">
+                    <svg viewBox="0 0 24 24" class="icon-svg">
+                        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Dízimos e Ofertas -->
+            <a href="#" class="link-card" id="donationCard">
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24" class="icon-svg">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </div>
+                <div class="link-content">
+                    <span class="link-title">Dízimos e Ofertas</span>
+                    <span class="link-description">Veja dados bancários e chave PIX para contribuição</span>
+                </div>
+                <div class="link-chevron">
+                    <svg viewBox="0 0 24 24" class="icon-svg">
+                        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Site Oficial -->
+            <a href="https://www.nazarenocomunidadedobem.com.br/" class="link-card" target="_blank">
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24" class="icon-svg">
+                        <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95a15.65 15.65 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.92 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.33-.14 2 0 .67.06 1.34.14 2H4.26zm.82 2h2.95c.18 1.3.65 2.52 1.38 3.56A8.03 8.03 0 0 1 5.08 16zm2.95-8H5.08a8.03 8.03 0 0 1 4.33-3.56A15.65 15.65 0 0 0 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.33-.16-2 0-.67.07-1.34.16-2h4.68c.09.66.16 1.33.16 2 0 .67-.07 1.34-.16 2zm.28 5.56c.73-1.04 1.2-2.26 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56zM16.36 14c.08-.66.14-1.33.14-2 0-.67-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z"/>
+                    </svg>
+                </div>
+                <div class="link-content">
+                    <span class="link-title">Nosso Site</span>
+                    <span class="link-description">Visite nossa página web oficial e saiba mais</span>
+                </div>
+                <div class="link-chevron">
+                    <svg viewBox="0 0 24 24" class="icon-svg">
+                        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Como Chegar -->
+            <a href="https://www.google.com/maps/search/?api=1&query=Igreja+do+Nazareno+Comunidade+do+Bem+R.+Joaquim+Inacio+Valente+13+Jardim+Bela+Vista+Sumare+SP" class="link-card" target="_blank">
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24" class="icon-svg">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                    </svg>
+                </div>
+                <div class="link-content">
+                    <span class="link-title">Como Chegar</span>
+                    <span class="link-description">Rua Joaquim Inácio Valente, 13 - Sumaré / SP</span>
+                </div>
+                <div class="link-chevron">
+                    <svg viewBox="0 0 24 24" class="icon-svg">
+                        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                    </svg>
+                </div>
+            </a>
+
+            <!-- Aplicativo COMU Nazareno -->
+            <a href="https://play.google.com/store/apps/details?id=br.com.inchurch.nazarenosp" class="link-card" target="_blank">
+                <div class="link-icon">
+                    <svg viewBox="0 0 24 24" class="icon-svg">
+                        <path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/>
+                    </svg>
+                </div>
+                <div class="link-content">
+                    <span class="link-title">Baixe o Nosso App</span>
+                    <span class="link-description">Acesse a agenda e eventos no COMU Nazareno</span>
+                </div>
+                <div class="link-chevron">
+                    <svg viewBox="0 0 24 24" class="icon-svg">
+                        <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" />
+                    </svg>
+                </div>
+            </a>
+        </div>
+
+        <!-- Linha de Redes Sociais no Rodapé -->
+        <div class="social-row">
+            <a href="https://www.instagram.com/nazarenocomunidadedobem/" class="social-icon-btn" target="_blank" aria-label="Instagram">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+            </a>
+            <a href="https://www.youtube.com/@nazarenocomunidadedobem" class="social-icon-btn" target="_blank" aria-label="YouTube">
+                <svg viewBox="0 0 24 24">
+                    <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.517 3.545 12 3.545 12 3.545s-7.517 0-9.388.507a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.871.507 9.388.507 9.388.507s7.517 0 9.388-.507a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+            </a>
+            <a href="https://www.facebook.com/nazarenocomunidadedobem" class="social-icon-btn" target="_blank" aria-label="Facebook">
+                <svg viewBox="0 0 24 24">
+                    <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z" />
+                </svg>
+            </a>
+            <a href="mailto:contato@nazarenocomunidadedobem.com.br" class="social-icon-btn" target="_blank" aria-label="E-mail">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+            </a>
+        </div>
+
+        <footer>
+            &copy; 2026 Igreja do Nazareno Comunidade do Bem.
+            <br>
+            Sumaré - SP.
+        </footer>
+    </div>
+
+    <!-- Modal Dízimos e Ofertas -->
+    <div class="modal" id="donationModal">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">&times;</span>
+            <h2 class="modal-title">Dízimos e Ofertas 🤍</h2>
+            <p class="modal-desc">Sua contribuição apoia nossos ministérios e ações sociais locais.</p>
+            
+            <div class="donation-info-box">
+                <span class="donation-label">Banco Itaú</span>
+                <span class="donation-value">Agência: 0055</span>
+                <span class="donation-value">Conta Corrente: 81452-9</span>
+                <span class="donation-value">Favorecido: Igreja do Nazareno - Distrito São Paulo</span>
+            </div>
+            
+            <div class="donation-info-box">
+                <span class="donation-label">Chave PIX (CNPJ)</span>
+                <div class="pix-copy-container">
+                    <span class="donation-value pix-key" id="pixKey">09.493.935/0042-08</span>
+                    <button class="copy-btn" id="copyBtn">Copiar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const interBubble = document.querySelector('.interactive');
+            let curX = 0;
+            let curY = 0;
+            let tgX = 0;
+            let tgY = 0;
+
+            function move() {
+                curX += (tgX - curX) / 20;
+                curY += (tgY - curY) / 20;
+                interBubble.style.transform = `translate(${Math.round(curX)}px, ${Math.round(curY)}px)`;
+                requestAnimationFrame(() => {
+                    move();
+                });
+            }
+
+            window.addEventListener('mousemove', (event) => {
+                tgX = event.clientX;
+                tgY = event.clientY;
+            });
+
+            move();
+
+            // Lógica do Modal de Dízimos
+            const donationCard = document.getElementById('donationCard');
+            const donationModal = document.getElementById('donationModal');
+            const modalClose = document.getElementById('modalClose');
+            const copyBtn = document.getElementById('copyBtn');
+            const pixKeyText = document.getElementById('pixKey').textContent;
+
+            donationCard.addEventListener('click', (e) => {
+                e.preventDefault();
+                donationModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            const closeModal = () => {
+                donationModal.classList.remove('active');
+                document.body.style.overflow = '';
+            };
+
+            modalClose.addEventListener('click', closeModal);
+            donationModal.addEventListener('click', (e) => {
+                if (e.target === donationModal) {
+                    closeModal();
+                }
+            });
+
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(pixKeyText).then(() => {
+                    copyBtn.textContent = 'Copiado!';
+                    copyBtn.classList.add('copied');
+                    setTimeout(() => {
+                        copyBtn.textContent = 'Copiar';
+                        copyBtn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
